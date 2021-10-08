@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css';
 import App from './App'
-import ApolloClient from 'apollo-boost'
-import { ApolloProvider } from 'react-apollo'
+import {   ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql } from '@apollo/client'
 
 const client = new ApolloClient({
   uri: 'https://gapi.storyblok.com/v1/api',
+  cache: new InMemoryCache(),
   request: operation => {
     operation.setContext({
       headers: {
